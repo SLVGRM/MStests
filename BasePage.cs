@@ -1,16 +1,11 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MStests
 {
     public class BasePage
     {
-        protected IWebDriver driver = new ChromeDriver();
+        protected IWebDriver driver;
 
         public BasePage(IWebDriver driver)
         {
