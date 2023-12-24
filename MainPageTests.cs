@@ -22,12 +22,12 @@ namespace MStests
         {
             driver.Navigate().GoToUrl(mainPage.mainPageUrl);
             var searchInput = driver.FindElement(By.CssSelector("[data-tid='SearchInput']"));
-            string query = "налог";
+            string query = "223";
             searchInput.Click();
             searchInput.SendKeys(query);
             driver.FindElement(By.CssSelector("[data-tid='SearchSubmitButton']")).Click();
             var url = driver.Url.ToString();
-            var expectedPath = $"searching=true&sortby=1&searchquerysource=2&from=Main";
+            var expectedPath = $"?query={query}&searching=true&sortby=1&searchquerysource=2&from=Main";
             var actualPath = new Uri(url).PathAndQuery;
             actualPath.Should().Contain(expectedPath);
         }
