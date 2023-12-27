@@ -5,11 +5,11 @@ namespace MStests
 {
     public class BasePage
     {
-        protected IWebDriver driver;
+        protected IWebDriver Driver;
 
         public BasePage(IWebDriver driver)
         {
-            this.driver = driver;
+            this.Driver = driver;
         }
     }
 }

@@ -8,25 +8,25 @@ namespace MStests
     [TestClass]
     public class MainPageTests
     {
-        private IWebDriver driver;
-        private MainPage mainPage;
+        private readonly IWebDriver _driver;
+        private readonly MainPage _mainPage;
 
         public MainPageTests()
         {
-            driver = new ChromeDriver();
-            mainPage = new MainPage(driver);
+            _driver = new ChromeDriver();
+            _mainPage = new MainPage(_driver);
         }
 
         [TestMethod]
         public void QueryParameters_ShouldBeCorrect_OnSearchPage()
         {
-            driver.Navigate().GoToUrl(mainPage.mainPageUrl);
-            var searchInput = driver.FindElement(By.CssSelector("[data-tid='SearchInput']"));
+            _driver.Navigate().GoToUrl(_mainPage.mainPageUrl);
+            var searchInput = _driver.FindElement(By.CssSelector("[data-tid='SearchInput']"));
             string query = "223";
             searchInput.Click();
             searchInput.SendKeys(query);
-            driver.FindElement(By.CssSelector("[data-tid='SearchSubmitButton']")).Click();
-            var url = driver.Url.ToString();
+            _driver.FindElement(By.CssSelector("[data-tid='SearchSubmitButton']")).Click();
+            var url = _driver.Url.ToString();
             var expectedPath = $"?query={query}&searching=true&sortby=1&searchquerysource=2&from=Main";
             var actualPath = new Uri(url).PathAndQuery;
             actualPath.Should().Contain(expectedPath);
@@ -35,8 +35,8 @@ namespace MStests
         [TestCleanup]
         public void Cleanup()
         {
-            driver.Close();
-            driver.Quit();
+            _driver.Close();
+            _driver.Quit();
         }
     }
 }
